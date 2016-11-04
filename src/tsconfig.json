@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "noImplicitAny": true,
+        "removeComments": false,
+        "preserveConstEnums": true,
+        "sourceMap": false,
+        "module": "system",
+        "outFile": "../out/contnet.js"
+    },
+    "files": [
+        "data/DataNode.ts"
+    ]
+}

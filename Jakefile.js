@@ -10,9 +10,6 @@
     var tsc = require("typescript");
     var sass = require("node-sass");
 
-    // Platform
-    var platform = process.platform;
-
     // Utils
     var compiler = "tsc.js";
     var node = "node";
@@ -22,48 +19,29 @@
         "lib",
         compiler);
 
-    // Tasks
-    // Compile -------------------------------------
+    // -----------------------------
+    // Compile
+    // -----------------------------
+
     desc("Builds the project and all source files.");
     task("default", function () {
         console.log("Building...");
 
         // 1. Compile TS files
-        console.log("Compiling browser-side...");
+        console.log("Compiling source...");
         compileBrowser();
 
         // 2. Compile SASS files
-        console.log("Compiling SASS files...");
+        console.log("Compiling styles...");
         compileSass();
-
-        // 3. Copy remaining files to out folder
-        console.log("Copying static artifacts...");
-        copyStaticArtifacts();
 
         console.log("Build done!");
     });
 
-    // Compile browser-------------------------------------------
-    desc("Builds the project browser side and all source files.");
-    task("browser", function () {
-        console.log("Building browser side...");
-
-        // 1. Compile TS files
-        console.log("Compiling browser-side...");
-        compileBrowser();
-
-        // 2. Compile SASS files
-        console.log("Compiling SASS files...");
-        compileSass();
-
-        // 3. Copy remaining files to out folder
-        console.log("Copying static artifacts...");
-        copyStaticArtifacts();
-
-        console.log("Build done!");
-    });
-
-    // Cleanup -------------------------------------------------------------
+    // -----------------------------
+    // Clean
+    // -----------------------------
+    
     desc("Removes output files from source locations and cleans up folders");
     task("cleanup", function () {
         console.log("Cleaning up output folder...");
@@ -73,6 +51,10 @@
         console.log("Cleanup done!");
     });
 
+    // -----------------------------
+    // Private functions
+    // -----------------------------
+    
     function compileBrowser() {
         exec(node + " " + compilerExecPath + " " + "--project src");
     }
@@ -108,10 +90,5 @@
                 fs.rmdirSync(pathToFolder);
             }
         }
-    }
-
-    function copyStaticArtifacts() {
-        fs.createReadStream(path.join("src", "index.html"))
-            .pipe(fs.createWriteStream(path.join("out", "index.html")));
     }
 })();
