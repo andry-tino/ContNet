@@ -6,7 +6,6 @@
 /// <reference path="Node.ts"/>
 
 namespace contnet.data {
-    
     /**
      * Represents a data node.
      * 
