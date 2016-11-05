@@ -24,5 +24,23 @@ namespace contnet.data {
         public constructor(name: string) {
             super(name);
         }
+        
+        /**
+         * Gets the url.
+         * 
+         * @memberOf DataNode
+         */
+        public get url() {
+            return this._url;
+        }
+
+        /**
+         * Sets the url.
+         * 
+         * @memberOf DataNode
+         */
+        public set url(value) {
+            this._url = value;
+        }
     }
 }
